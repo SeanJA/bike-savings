@@ -149,6 +149,9 @@
                 </div>
             </div>
         </div>
+        <div class="card-footer text-right">
+            <button v-on:click="resetData" class="btn btn-secondary">Reset</button>
+        </div>
     </div>
 
 </div>
@@ -206,6 +209,17 @@
                     return 0;
                 }
                 return result;
+            }
+        },
+        methods: {
+            resetData: function (event) {
+                this.weeksPerYear = 52;
+                this.weeksOfVacation = 3;
+                this.daysOfHolidays = 9;
+                this.commutesPerWeek = 5;
+                this.fuelEfficiency = 8.9;
+                this.kmToWorkOneWay = 3;
+                this.averagePriceOfGas = 0.99625;
             }
         }
     });
