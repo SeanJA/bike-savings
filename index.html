@@ -8,6 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css" />
     <title>🚲 Bike savings calculator 🚲</title>
     <style>
         .no-border {
@@ -22,6 +23,7 @@
     <meta name="theme-color" content="#ffffff">
 </head>
 <body>
+<a class="github-fork-ribbon d-none d-md-block" href="https://github.com/SeanJA/bike-savings" data-ribbon="Fork me on GitHub" target="_blank" title="Fork me on GitHub">Fork me on GitHub</a>
 
 <div id="app" class="container" style="max-width: 768px;">
 
@@ -82,7 +84,8 @@
                 <div class="col-md-6 col-sm-12 mt-3">
                     <label for="commutesPerWeek">🛣️ You commute</label>
                     <div class="input-group mb-3">
-                        <input id="commutesPerWeek" class="form-control form-control-lg" type="number" min="1" max="7" step="1" v-model="commutesPerWeek"/>
+                        <input id="commutesPerWeek" class="form-control form-control-lg" type="number" min="1" max="7"
+                               step="1" v-model="commutesPerWeek"/>
                         <div class="input-group-append">
                             <span class="input-group-text">times per week</span>
                         </div>
@@ -92,7 +95,8 @@
                 <div class="col-md-6 col-sm-12 mt-3">
                     <label for="fuelEfficiency">🚗 Your car gets</label>
                     <div class="input-group mb-3">
-                        <input id="fuelEfficiency" class="form-control form-control-lg" type="number" min="0" max="14" step=".1" v-model="fuelEfficiency"/>
+                        <input id="fuelEfficiency" class="form-control form-control-lg" type="number" min="0" max="14"
+                               step=".1" v-model="fuelEfficiency"/>
                         <div class="input-group-append">
                             <span class="input-group-text"> km / 100 L </span>
                         </div>
@@ -108,7 +112,8 @@
                 <div class="col-md-6 col-sm-12 mt-3">
                     <label for="weeksOfVacation">🏖 You get</label>
                     <div class="input-group mb-3">
-                        <input id="weeksOfVacation" class="form-control form-control-lg" type="number" min="0" max="52" step="1" v-model="weeksOfVacation"/>
+                        <input id="weeksOfVacation" class="form-control form-control-lg" type="number" min="0" max="52"
+                               step="1" v-model="weeksOfVacation"/>
                         <div class="input-group-append">
                             <span class="input-group-text">weeks of vacation</span>
                         </div>
@@ -191,21 +196,21 @@
             },
             totalLitres: function () {
                 let result = ((this.fuelEfficiency / 100) * this.kmCommutingPerYear).toFixed(2);
-                if(result < 0){
+                if (result < 0) {
                     return 0;
                 }
                 return result;
             },
             fuelCost: function () {
-                let result =  (this.totalLitres * this.averagePriceOfGas).toFixed(2);
-                if(result < 0){
+                let result = (this.totalLitres * this.averagePriceOfGas).toFixed(2);
+                if (result < 0) {
                     return 0;
                 }
                 return result;
             },
             co2Emission: function () {
-                let result =  (this.totalLitres * 2.3).toFixed(2);
-                if(result < 0){
+                let result = (this.totalLitres * 2.3).toFixed(2);
+                if (result < 0) {
                     return 0;
                 }
                 return result;
@@ -229,7 +234,11 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-L2F45TRYE6"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
     gtag('js', new Date());
 
     gtag('config', 'G-L2F45TRYE6');
