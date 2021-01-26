@@ -108,7 +108,7 @@
                 <div class="col-md-6 col-sm-12 mt-3">
                     <label for="weeksOfVacation">🏖 You get</label>
                     <div class="input-group mb-3">
-                        <input id="weeksOfVacation" class="form-control form-control-lg"  min="0" max="52" step="1" v-model="weeksOfVacation"/>
+                        <input id="weeksOfVacation" class="form-control form-control-lg" type="number" min="0" max="52" step="1" v-model="weeksOfVacation"/>
                         <div class="input-group-append">
                             <span class="input-group-text">weeks of vacation</span>
                         </div>
@@ -118,7 +118,7 @@
                 <div class="col-md-6 col-sm-12 mt-3">
                     <label for="daysOfHolidays">🏖 Holidays per year</label>
                     <div class="input-group mb-3">
-                        <input id="daysOfHolidays" class="form-control form-control-lg" min="0" max="14" step="1"
+                        <input id="daysOfHolidays" class="form-control form-control-lg" type="number" min="0" step="1"
                                v-model="daysOfHolidays"/>
                         <div class="input-group-append">
                             <span class="input-group-text">days</span>
@@ -138,7 +138,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">$</span>
                         </div>
-                        <input id="averagePriceOfGas" class="form-control form-control-lg" min="0" max="2"
+                        <input id="averagePriceOfGas" class="form-control form-control-lg" type="number" min="0"
                                v-model="averagePriceOfGas"/>
                     </div>
                     <div class="mb-3">
