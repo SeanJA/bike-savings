@@ -137,6 +137,18 @@
             </div>
 
             <div class="row">
+
+                <div class="col-md-6 col-sm-12 mt-3">
+                    <label for="kmToWorkOneWay">📏 You drive</label>
+                    <div class="input-group mb-3">
+                        <input id="kmToWorkOneWay" class="form-control form-control-lg" type="number" min="0"
+                               step=".1" v-model="kmToWorkOneWay"/>
+                        <div class="input-group-append">
+                            <span class="input-group-text"> km to work </span>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col mt-3">
                     <label for="averagePriceOfGas">📈 Average price of gas for the year</label>
                     <div class="input-group mb-3">
