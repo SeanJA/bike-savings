@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>🚲 Bike savings calculator 🚲</title>
+    <style>
+        .no-border {
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app" class="container" style="max-width: 768px;">
+
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center">
+                🚲 Bike savings calculator
+            </h1>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-4 col-sm-12 mt-3">
+            <div class="card">
+                <div class="card-header">
+                    ⛽ Litres of gas
+                </div>
+
+                <div class="card-body">
+                    <div class="form-control form-control-lg no-border">
+                        <strong>{{totalLitres}}</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12 mt-3">
+            <div class="card">
+                <div class="card-header">
+                    💰 Dollars
+                </div>
+                <div class="card-body">
+                    <div class="form-control form-control-lg no-border">
+                        $<strong>{{fuelCost}}</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12 mt-3">
+            <div class="card">
+                <div class="card-header">
+                    🌳 CO<sub>2</sub> Emissions
+                </div>
+                <div class="card-body">
+                    <div class="form-control form-control-lg no-border">
+                        <strong>{{co2Emission}}</strong> kg
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            📒 Play with the numbers
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6 col-sm-12 mt-3">
+                    <label for="commutesPerWeek">🛣️ You commute</label>
+                    <div class="input-group mb-3">
+                        <input id="commutesPerWeek" class="form-control form-control-lg" v-model="commutesPerWeek"/>
+                        <div class="input-group-append">
+                            <span class="input-group-text">times per week</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-12 mt-3">
+                    <label for="fuelEfficiency">🚗 Your car gets</label>
+                    <div class="input-group mb-3">
+                        <input id="fuelEfficiency" class="form-control form-control-lg" v-model="fuelEfficiency"/>
+                        <div class="input-group-append">
+                            <span class="input-group-text"> km / 100 L </span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <small>Not sure? You can find an approximation <a
+                                href="https://fcr-ccc.nrcan-rncan.gc.ca/en" target="_blank">here</a>.</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-sm-12 mt-3">
+                    <label for="weeksOfVacation">🏖 You get</label>
+                    <div class="input-group mb-3">
+                        <input id="weeksOfVacation" class="form-control form-control-lg" v-model="weeksOfVacation"/>
+                        <div class="input-group-append">
+                            <span class="input-group-text">weeks of vacation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-12 mt-3">
+                    <label for="daysOfHolidays">🏖 Holidays per year</label>
+                    <div class="input-group mb-3">
+                        <input id="daysOfHolidays" class="form-control form-control-lg"
+                               v-model="daysOfHolidays"/>
+                        <div class="input-group-append">
+                            <span class="input-group-text">days</span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <small>You can check your province <a href="https://www.statutoryholidays.com/"
+                                                              target="_blank">here</a></small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col mt-3">
+                    <label for="averagePriceOfGas">📈 Average price of gas for the year</label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">$</span>
+                        </div>
+                        <input id="averagePriceOfGas" class="form-control form-control-lg"
+                               v-model="averagePriceOfGas"/>
+                    </div>
+                    <div class="mb-3">
+                        <small>Find out what gas cost last year <a
+                                href="https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810000101&pickMembers%5B0%5D=2.2&cubeTimeFrame.startMonth=01&cubeTimeFrame.startYear=2020&cubeTimeFrame.endMonth=12&cubeTimeFrame.endYear=2020&referencePeriods=20200101%2C20201201"
+                                target="_blank">here</a></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="//cdn.jsdelivr.net/npm/vue@2"></script>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            weeksPerYear: 52,
+            weeksOfVacation: 3,
+            daysOfHolidays: 9,
+            commutesPerWeek: 5,
+            fuelEfficiency: 11.8,
+            kmToWorkOneWay: 3,
+            averagePriceOfGas: 0.99625
+        },
+        computed: {
+            weeksOfHolidays: function () {
+                return this.daysOfHolidays / 5;
+            },
+            weeksMinusVacation: function () {
+                return this.weeksPerYear - this.weeksOfVacation
+            },
+            totalWorkWeeks: function () {
+                return this.weeksMinusVacation - this.weeksOfHolidays;
+            },
+            kmBothWays: function () {
+                return this.kmToWorkOneWay * 2;
+            },
+            daysOfCommuting: function () {
+                return this.totalWorkWeeks * this.commutesPerWeek;
+            },
+            kmCommutingPerYear: function () {
+                return this.daysOfCommuting * this.kmBothWays;
+            },
+            totalLitres: function () {
+                return ((this.fuelEfficiency / 100) * this.kmCommutingPerYear).toFixed(2);
+            },
+            fuelCost: function () {
+                return (this.totalLitres * this.averagePriceOfGas).toFixed(2);
+            },
+            co2Emission: function () {
+                return (this.totalLitres * 2.3).toFixed(2);
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
