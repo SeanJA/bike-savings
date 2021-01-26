@@ -187,16 +187,25 @@
                 return this.daysOfCommuting * this.kmBothWays;
             },
             totalLitres: function () {
-                if(this.fuelEfficiency === 0){
+                let result = ((this.fuelEfficiency / 100) * this.kmCommutingPerYear).toFixed(2);
+                if(result < 0){
                     return 0;
                 }
-                return ((this.fuelEfficiency / 100) * this.kmCommutingPerYear).toFixed(2);
+                return result;
             },
             fuelCost: function () {
-                return (this.totalLitres * this.averagePriceOfGas).toFixed(2);
+                let result =  (this.totalLitres * this.averagePriceOfGas).toFixed(2);
+                if(result < 0){
+                    return 0;
+                }
+                return result;
             },
             co2Emission: function () {
-                return (this.totalLitres * 2.3).toFixed(2);
+                let result =  (this.totalLitres * 2.3).toFixed(2);
+                if(result < 0){
+                    return 0;
+                }
+                return result;
             }
         }
     });
