@@ -155,12 +155,16 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">$</span>
                         </div>
-                        <input id="averagePriceOfGas" class="form-control form-control-lg" type="number" min="0"
-                               v-model="averagePriceOfGas"/>
+                        <input id="averagePriceOfGas"
+                               class="form-control form-control-lg"
+                               type="number"
+                               min="0"
+                               v-model="averagePriceOfGas"
+                        />
                     </div>
                     <div class="mb-3">
                         <small>Find out what gas cost last year <a
-                                href="https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810000101&pickMembers%5B0%5D=2.2&cubeTimeFrame.startMonth=01&cubeTimeFrame.startYear=2020&cubeTimeFrame.endMonth=12&cubeTimeFrame.endYear=2020&referencePeriods=20200101%2C20201201"
+                                href="https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810000101&pickMembers%5B0%5D=2.2&cubeTimeFrame.startMonth=01&cubeTimeFrame.startYear=2023&cubeTimeFrame.endMonth=12&cubeTimeFrame.endYear=2023&referencePeriods=20200101%2C20201201"
                                 target="_blank">here</a></small>
                     </div>
                 </div>
@@ -236,7 +240,7 @@
                 this.commutesPerWeek = 5;
                 this.fuelEfficiency = 8.9;
                 this.kmToWorkOneWay = 3;
-                this.averagePriceOfGas = 0.99625;
+                this.averagePriceOfGas = 1.5722;
             }
         }
     });
